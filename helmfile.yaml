@@ -1,0 +1,62 @@
+# helmfile.yaml
+# Manages ALL logistics services across ALL environments
+# One command to rule them all:
+#   helmfile -e dev sync    → deploys ALL services to dev
+#   helmfile -e prod sync   → deploys ALL services to prod
+
+environments:
+  dev:
+    values:
+      - environments/dev.yaml
+  prod:
+    values:
+      - environments/prod.yaml
+
+---
+
+releases:
+  # ─── Pickup Service ───────────────────────────────────────
+  - name: logistics-pickup
+    namespace: logistics-{{ .Environment.Name }}
+    createNamespace: true
+    chart: ./charts/logistics-pickup
+    values:
+      - charts/logistics-pickup/values.yaml
+    set:
+      - name: image.tag
+        value: {{ .Values.pickup.tag }}
+      - name: replicaCount
+        value: {{ .Values.pickup.replicaCount }}
+      - name: env.APP_ENV
+        value: {{ .Values.appEnv }}
+      - name: resources.limits.cpu
+        value: {{ .Values.resources.limits.cpu }}
+      - name: resources.limits.memory
+        value: {{ .Values.resources.limits.memory }}
+      - name: resources.requests.cpu
+        value: {{ .Values.resources.requests.cpu }}
+      - name: resources.requests.memory
+        value: {{ .Values.resources.requests.memory }}
+
+  # ─── Delivery Service ─────────────────────────────────────
+  - name: logistics-delivery
+    namespace: logistics-{{ .Environment.Name }}
+    createNamespace: true
+    chart: ./charts/logistics-delivery
+    values:
+      - charts/logistics-delivery/values.yaml
+    set:
+      - name: image.tag
+        value: {{ .Values.delivery.tag }}
+      - name: replicaCount
+        value: {{ .Values.delivery.replicaCount }}
+      - name: env.APP_ENV
+        value: {{ .Values.appEnv }}
+      - name: resources.limits.cpu
+        value: {{ .Values.resources.limits.cpu }}
+      - name: resources.limits.memory
+        value: {{ .Values.resources.limits.memory }}
+      - name: resources.requests.cpu
+        value: {{ .Values.resources.requests.cpu }}
+      - name: resources.requests.memory
+        value: {{ .Values.resources.requests.memory }}
