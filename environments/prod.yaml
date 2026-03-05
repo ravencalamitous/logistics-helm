@@ -5,7 +5,7 @@
 appEnv: production
 
 pickup:
-  tag: main-latest      # auto-updated when logistics-pickup merges to main
+  tag: prod-1665e9d
   replicaCount: 2
 
 delivery:
