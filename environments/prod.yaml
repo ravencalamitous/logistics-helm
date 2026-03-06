@@ -5,7 +5,7 @@
 appEnv: production
 
 pickup:
-  tag: prod-95baab8
+  tag: prod-385b800
   replicaCount: 2
 
 delivery:
