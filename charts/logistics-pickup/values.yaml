@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: your-dockerhub-username/logistics-pickup
+  repository: ravencalamitous/logistics-pickup
   pullPolicy: IfNotPresent
   tag: latest
 
