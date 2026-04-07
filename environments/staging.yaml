@@ -1,0 +1,9 @@
+appEnv: staging
+
+pickup:
+  tag: staging-latest
+  replicaCount: 1
+
+delivery:
+  tag: staging-latest
+  replicaCount: 1
