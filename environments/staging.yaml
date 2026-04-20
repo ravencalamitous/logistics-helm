@@ -1,7 +1,7 @@
 appEnv: staging
 
 pickup:
-  tag: staging-latest
+  tag: rc-v1.0.0
   replicaCount: 1
 
 delivery:
